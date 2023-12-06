@@ -1,0 +1,5 @@
+resources:
+- ./cluster
+- ./operator
+
+namespace: mysql-operator

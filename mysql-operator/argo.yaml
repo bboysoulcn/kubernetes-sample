@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'mysql-operator'
+spec:
+  destination:
+    namespace: 'mysql-operator'
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: 'mysql-operator'
+    repoURL: 'https://github.com/bboysoulcn/kubernetes-sample.git'
+    targetRevision: HEAD
+  project: 'default'

@@ -1,0 +1,8 @@
+apiVersion: mysql.oracle.com/v2
+kind: MySQLBackup
+metadata:
+    name: a-cool-one-off-backup
+    namespace: mysql-operator
+spec:
+  clusterName: idc-with-custom-config
+  backupProfileName: myfancyprofile

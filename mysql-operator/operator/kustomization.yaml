@@ -1,0 +1,3 @@
+resources:
+- deploy-operator.yaml
+- deploy-crds.yaml
