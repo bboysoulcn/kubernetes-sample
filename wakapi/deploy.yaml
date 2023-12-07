@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wakapi
+  namespace: app
+spec:
+  selector:
+    matchLabels:
+      app: wakapi
+  template:
+    metadata:
+      labels:
+        app: wakapi
+    spec:
+      containers:
+      - name: wakapi
+        image: ghcr.io/muety/wakapi:2.10.0
+        ports:
+        - containerPort: 3000
+          name: web
+        env:
+        - name: WAKAPI_DB_TYPE
+          value: "mysql"
+        - name: WAKAPI_DB_NAME
+          value: "wakapi"
+        - name: WAKAPI_DB_USER
+          value: "root"
+        - name: WAKAPI_DB_PASSWORD
+          value: "password"
+        - name: WAKAPI_DB_HOST
+          value: "mysql.example.com"
+        - name: WAKAPI_DB_PORT
+          value: "3306"
+        - name: ENVIRONMENT
+          value: "prod"
+        - name: WAKAPI_PASSWORD_SALT
+          value: "salt"
+        - name: WAKAPI_LEADERBOARD_ENABLED # 是否启用公共排行榜
+          value: "false"
+        - name: WAKAPI_REPORT_TIME_WEEKLY	# 发送电子邮件报告的工作日和时间
+          value: "0 0 8 * * *"
+        - name: WAKAPI_SUPPORT_CONTACT # 在页面上显示为支持联系人的电子邮件地址
+          value: "example@example.com"
+        - name: WAKAPI_ALLOW_SIGNUP # 是否启用用户注册
+          value: "false"
+        - name: WAKAPI_DISABLE_FRONTPAGE # 是否禁用登陆页面（对于个人实例有用）
+          value: "true"
+        - name: WAKAPI_EXPOSE_METRICS # 是否公开 Prometheus 指标/api/metrics
+          value: "true"
+        - name: WAKAPI_DB_MAX_CONNECTIONS # 最大数据库连接数
+          value: "10"
+        - name: WAKAPI_MAIL_ENABLED	# 是否允许Wakapi发送电子邮件（例如密码重置）
+          value: "true"
+        - name: WAKAPI_MAIL_SENDER # 外发邮件的默认发件人地址（MailWhale 忽略）
+          value: "Wakapi <example@example.com>"
+        - name: WAKAPI_MAIL_PROVIDER # smtp用于发送邮件的实现
+          value: "smtp"
+        - name: WAKAPI_MAIL_SMTP_HOST # 用于发送邮件的 SMTP 服务器地址
+          value: "smtp.example.com"
+        - name: WAKAPI_MAIL_SMTP_PORT # SMTP 服务器端口
+          value: "25"
+        - name: WAKAPI_MAIL_SMTP_USER # SMTP服务器验证用户名
+          value: "example@example.com"
+        - name: WAKAPI_MAIL_SMTP_PASS # SMTP服务器验证密码
+          value: "password"
+        - name: WAKAPI_MAIL_SMTP_TLS # SMTP 服务器是否需要 TLS 加密
+          value: "false"
+        - name: WAKAPI_PUBLIC_URL # 可以公开找到您的 Wakapi 实例的 URL
+          value: "https://wakapi.example.cn"

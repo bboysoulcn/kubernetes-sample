@@ -1,0 +1,6 @@
+resources:
+- deploy.yaml
+- svc.yaml
+- ingress.yaml
+- certificare.yaml
+namespace: app

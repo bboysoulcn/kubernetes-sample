@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wakapi
+spec:
+  destination:
+    name: ''
+    namespace: ''
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: wakapi
+    repoURL: 'https://github.com/bboysoulcn/kubernetes-sample.git'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated: null
+
