@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitlab
+  namespace: app
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 443
+    targetPort: 443
+  - name: ssh
+    port: 22
+    targetPort: 22
+  selector:
+    app: gitlab

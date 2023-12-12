@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'gitlab'
+spec:
+  destination:
+    namespace: ''
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: 'gitlab'
+    repoURL: 'https://github.com/bboysoulcn/kubernetes-sample.git'
+    targetRevision: HEAD
+  project: 'app'

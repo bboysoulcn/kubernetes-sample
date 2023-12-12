@@ -1,0 +1,4 @@
+resources:
+- sts.yaml
+- ingress.yaml
+- svc.yaml

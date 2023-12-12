@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: gitlab
+  namespace: app
+spec:
+  selector:
+    matchLabels:
+      app: gitlab
+  serviceName: gitlab
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gitlab
+    spec:
+      containers:
+        - name: gitlab
+          image: gitlab/gitlab-ce:16.5.1-ce.0
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+          volumeMounts:
+            - name: gitlab-data
+              mountPath: /var/opt/gitlab
+              subPath: data
+            - name: gitlab-data
+              mountPath: /etc/gitlab
+              subPath: config
+            - name: gitlab-data
+              mountPath: /var/log/gitlab
+              subPath: logs
+          ports:
+            - containerPort: 443
+              name: web
+            - containerPort: 22
+              name: ssh
+  volumeClaimTemplates:
+    - metadata:
+        name: gitlab-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        storageClassName: managed-nfs-storage
+        resources:
+          requests:
+            storage: 500Gi
