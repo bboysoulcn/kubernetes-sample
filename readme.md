@@ -1,6 +1,6 @@
 ### CI 状态
 
-![Gitleaks](https://github.com/bboysoulcn/awesome-dockercompose/actions/workflows/gitleaks.yml/badge.svg)
+![Gitleaks](https://github.com/bboysoulcn/kubernetes-sample/actions/workflows/gitleaks.yml/badge.svg)
 
 ### 这是我的一些k8s yaml 文件，仅供参考
 
